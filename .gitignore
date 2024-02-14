@@ -1,0 +1,30 @@
+PyRep/CoppeliaSim_Edu_V4_1_0_Ubuntu20_04/
+output/
+.ipynb_checkpoints
+output*
+*.jpg
+.cache*
+.mypy_cache
+*.sif
+*.pyc
+__pycache__
+.DS_Store
+._.DS_Store
+*.pkl
+*.png
+*.mp4
+*.swp
+*.egg-info/
+peract_model
+diffusion_taskABC_D-C192-B30-lr3e-4-DI1-20-Phistory_selfattn_epsilon_instrcond-H3-DT25-backboneclip-S256,256-R1-wd5e-3
+
+# train/test directory
+train_logs/
+eval_logs/
+temp/
+
+# third-party modules
+calvin/
+
+# data directory
+data/
