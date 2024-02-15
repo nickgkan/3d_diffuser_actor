@@ -1,7 +1,7 @@
-# Action Diffusion with 3D Scene Representations
+# 3D Diffuser Actor: Policy Diffusion with 3D Scene Representations
 By [Tsung-Wei Ke*](https://twke18.github.io/), [Nikolaos Gkanatsios*](https://nickgkan.github.io/) and [Katerina Fragkiadaki](https://www.cs.cmu.edu/~katef/)
 
-Official implementation of ["Action Diffusion with 3D Scene Representations"]().
+Official implementation of ["3D Diffuser Actor: Policy Diffusion with 3D Scene Representations"]().
 
 This code base also includes our re-implementation of ["Act3D: 3D Feature Field Transformers for Multi-Task Robotic Manipulation"](https://arxiv.org/abs/2306.17817).  We provide trained model weights for both methods.
 
@@ -119,11 +119,11 @@ See [Getting started with RLBench](./docs/GETTING_STARTED_RLBENCH.md) and [Getti
 
 
 # Citation
-If you find this code useful for your research, please consider citing our paper *Action Diffusion with 3D Scene Representations*.
+If you find this code useful for your research, please consider citing our paper *3D Diffuser Actor: Policy Diffusion with 3D Scene Representations*.
 ```
 @article{3d_diffuser_actor,
   author = {Ke, Tsung-Wei and Gkanatsios, Nikolaos and Fragkiadaki, Katerina},
-  title = {Action Diffusion with 3D Scene Representations},
+  title = {3D Diffuser Actor: Policy Diffusion with 3D Scene Representations},
   journal = {Arxiv},
   year = {2024}
 }
