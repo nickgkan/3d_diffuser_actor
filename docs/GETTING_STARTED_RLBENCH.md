@@ -17,6 +17,8 @@ See [Preparing RLBench dataset](./DATA_PREPARATION_RLBENCH.md)
 > pip install -e .
 ```
 
+Remember to modify the success condition of `close_jar` task in RLBench, as the original condition is incorrect.  See this [pull request](https://github.com/MohitShridhar/RLBench/pull/1) for more detail.  
+
 ### Step 2: Train the policy
 
 * Train 3D Diffuser Actor with the PerAct setup
