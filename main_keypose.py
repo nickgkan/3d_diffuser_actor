@@ -344,7 +344,7 @@ class LossAndMetrics:
 
         self._compute_rotation_loss(pred, gt_action[:, 3:7], losses)
 
-        losses["gripper"] = F.binary_cross_entropy_with_logits(pred["gripper"], gt_action[:, 7:8])
+        losses["gripper"] = F.binary_cross_entropy(pred["gripper"], gt_action[:, 7:8])
         losses["gripper"] *= self.gripper_loss_coeff
 
         return losses

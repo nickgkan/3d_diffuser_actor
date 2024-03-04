@@ -229,6 +229,9 @@ class DiffuserActor(nn.Module):
         trajectory = self.unconvert_rot(trajectory)
         # unnormalize position
         trajectory[:, :, :3] = self.unnormalize_pos(trajectory[:, :, :3])
+        # Convert gripper status to probaility
+        if trajectory.shape[-1] > 7:
+            trajectory[..., 7] = trajectory[..., 7].sigmoid()
 
         return trajectory
 
