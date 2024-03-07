@@ -18,6 +18,7 @@ lang_enhanced=0
 relative_action=0
 seed=0
 checkpoint=train_logs/diffuser_actor_peract.pth
+quaternion_format=wxyz
 
 num_ckpts=${#tasks[@]}
 for ((i=0; i<$num_ckpts; i++)); do
@@ -49,6 +50,7 @@ for ((i=0; i<$num_ckpts; i++)); do
     --seed $seed \
     --gripper_loc_bounds_file $gripper_loc_bounds_file \
     --gripper_loc_bounds_buffer 0.04 \
+    --quaternion_format $quaternion_format \
     --interpolation_length $interpolation_length \
     --dense_interpolation 1
 done
