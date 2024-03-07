@@ -70,6 +70,7 @@ class Arguments(tap.Tap):
     num_vis_ins_attn_layers: int = 2
     use_instruction: int = 0
     rotation_parametrization: str = 'quat'
+    quaternion_format: str = 'wxyz'
     diffusion_timesteps: int = 100
     keypose_only: int = 0
     num_history: int = 0
@@ -150,6 +151,7 @@ class TrainTester(BaseTrainTester):
             fps_subsampling_factor=self.args.fps_subsampling_factor,
             gripper_loc_bounds=self.args.gripper_loc_bounds,
             rotation_parametrization=self.args.rotation_parametrization,
+            quaternion_format=self.args.quaternion_format,
             diffusion_timesteps=self.args.diffusion_timesteps,
             nhist=self.args.num_history,
             relative=bool(self.args.relative_action),
@@ -325,7 +327,7 @@ class TrajectoryCriterion:
         select_mask = (quat_l1 < quat_l1_).float()
         quat_l1 = (select_mask * quat_l1 + (1 - select_mask) * quat_l1_)
         # gripper openess
-        openess = ((pred[..., 7:].sigmoid() >= 0.5) == (gt[..., 7:] > 0.0)).bool()
+        openess = ((pred[..., 7:] >= 0.5) == (gt[..., 7:] > 0.0)).bool()
         tr = 'traj_'
 
         # Trajectory metrics

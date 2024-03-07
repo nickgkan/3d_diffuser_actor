@@ -12,6 +12,7 @@ B=8
 C=120
 ngpus=6
 max_episodes_per_task=20
+quaternion_format=xyzw
 
 CUDA_LAUNCH_BLOCKING=1 torchrun --nproc_per_node $ngpus --master_port $RANDOM \
     main_trajectory.py \
@@ -41,4 +42,5 @@ CUDA_LAUNCH_BLOCKING=1 torchrun --nproc_per_node $ngpus --master_port $RANDOM \
     --num_history $num_history \
     --cameras front\
     --max_episodes_per_task $max_episodes_per_task \
+    --quaternion_format $quaternion_format \
     --run_log_dir diffusion_multitask-C$C-B$B-lr$lr-DI$dense_interpolation-$interpolation_length-H$num_history-DT$diffusion_timesteps

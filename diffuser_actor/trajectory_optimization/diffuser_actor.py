@@ -35,12 +35,14 @@ class DiffuserActor(nn.Module):
                  fps_subsampling_factor=5,
                  gripper_loc_bounds=None,
                  rotation_parametrization='6D',
+                 quaternion_format='xyzw',
                  diffusion_timesteps=100,
                  nhist=3,
                  relative=False,
                  lang_enhanced=False):
         super().__init__()
         self._rotation_parametrization = rotation_parametrization
+        self._quaternion_format = quaternion_format
         self._relative = relative
         self.use_instruction = use_instruction
         self.encoder = Encoder(
@@ -227,6 +229,9 @@ class DiffuserActor(nn.Module):
         trajectory = self.unconvert_rot(trajectory)
         # unnormalize position
         trajectory[:, :, :3] = self.unnormalize_pos(trajectory[:, :, :3])
+        # Convert gripper status to probaility
+        if trajectory.shape[-1] > 7:
+            trajectory[..., 7] = trajectory[..., 7].sigmoid()
 
         return trajectory
 
@@ -243,6 +248,9 @@ class DiffuserActor(nn.Module):
     def convert_rot(self, signal):
         signal[..., 3:7] = normalise_quat(signal[..., 3:7])
         if self._rotation_parametrization == '6D':
+            # The following code expects wxyz quaternion format!
+            if self._quaternion_format == 'xyzw':
+                signal[..., 3:7] = signal[..., (6, 3, 4, 5)]
             rot = quaternion_to_matrix(signal[..., 3:7])
             res = signal[..., 7:] if signal.size(-1) > 7 else None
             if len(rot.shape) == 4:
@@ -273,6 +281,9 @@ class DiffuserActor(nn.Module):
             signal = torch.cat([signal[..., :3], quat], dim=-1)
             if res is not None:
                 signal = torch.cat((signal, res), -1)
+            # The above code handled wxyz quaternion format!
+            if self._quaternion_format == 'xyzw':
+                signal[..., 3:7] = signal[..., (4, 5, 6, 3)]
         return signal
 
     def convert2rel(self, pcd, curr_gripper):
@@ -296,13 +307,18 @@ class DiffuserActor(nn.Module):
     ):
         """
         Arguments:
-            gt_trajectory: (B, trajectory_length, 3+6+X)
+            gt_trajectory: (B, trajectory_length, 3+4+X)
             trajectory_mask: (B, trajectory_length)
             timestep: (B, 1)
             rgb_obs: (B, num_cameras, 3, H, W) in [0, 1]
             pcd_obs: (B, num_cameras, 3, H, W) in world coordinates
             instruction: (B, max_instruction_length, 512)
-            curr_gripper: (B, nhist, output_dim)
+            curr_gripper: (B, nhist, 3+4+X)
+
+        Note:
+            Regardless of rotation parametrization, the input rotation
+            is ALWAYS expressed as a quaternion form.
+            The model converts it to 6D internally if needed.
         """
         if self._relative:
             pcd_obs, curr_gripper = self.convert2rel(pcd_obs, curr_gripper)

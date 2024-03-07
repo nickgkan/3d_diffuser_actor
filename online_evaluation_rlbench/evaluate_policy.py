@@ -69,6 +69,7 @@ class Arguments(tap.Tap):
     num_vis_ins_attn_layers: int = 2
     use_instruction: int = 1
     rotation_parametrization: str = '6D'
+    quaternion_format: str = 'xyzw'
 
 
 def load_models(args):
@@ -97,6 +98,7 @@ def load_models(args):
             fps_subsampling_factor=args.fps_subsampling_factor,
             gripper_loc_bounds=gripper_loc_bounds,
             rotation_parametrization=args.rotation_parametrization,
+            quaternion_format=args.quaternion_format,
             diffusion_timesteps=args.diffusion_timesteps,
             nhist=args.num_history,
             relative=bool(args.relative_action),
