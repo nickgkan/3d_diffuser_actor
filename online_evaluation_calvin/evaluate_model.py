@@ -48,6 +48,7 @@ class DiffusionModel(CalvinBaseModel):
             fps_subsampling_factor=self.args.fps_subsampling_factor,
             gripper_loc_bounds=self.args.gripper_loc_bounds,
             rotation_parametrization=self.args.rotation_parametrization,
+            quaternion_format=self.args.quaternion_format,
             diffusion_timesteps=self.args.diffusion_timesteps,
             nhist=self.args.num_history,
             relative=bool(self.args.relative_action),

@@ -67,6 +67,7 @@ class Arguments(tap.Tap):
     num_vis_ins_attn_layers: int = 2
     use_instruction: int = 0
     rotation_parametrization: str = 'quat'
+    quaternion_format: str = 'wxyz'
     diffusion_timesteps: int = 100
     lang_enhanced: int = 0
     fps_subsampling_factor: int = 3

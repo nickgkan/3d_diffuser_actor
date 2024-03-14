@@ -20,6 +20,7 @@ lang_enhanced=1
 gripper_loc_bounds=tasks/calvin_rel_traj_location_bounds_task_ABC_D.json
 gripper_buffer=0.01
 val_freq=5000
+quaternion_format=wxyz
 
 export PYTHONPATH=`pwd`:$PYTHONPATH
 
@@ -46,4 +47,5 @@ torchrun --nproc_per_node $ngpus --master_port $RANDOM \
     --lang_enhanced $lang_enhanced \
     --save_video 0 \
     --base_log_dir train_logs/${main_dir}/pretrained/eval_logs/ \
+    --quaternion_format $quaternion_format \
     --checkpoint train_logs/diffuser_actor_calvin.pth
