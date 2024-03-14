@@ -20,6 +20,7 @@ lang_enhanced=1
 gripper_loc_bounds=tasks/calvin_rel_traj_location_bounds_task_ABC_D.json
 gripper_buffer=0.01
 val_freq=5000
+quaternion_format=wxyz
 
 run_log_dir=diffusion_taskABC_D-C$C-B$B-lr$lr-DI$dense_interpolation-$interpolation_length-H$num_history-DT$diffusion_timesteps-backbone$backbone-S$image_size-R$relative_action-wd$wd
 
@@ -61,6 +62,7 @@ CUDA_LAUNCH_BLOCKING=1 torchrun --nproc_per_node $ngpus --master_port $RANDOM \
     --relative_action $relative_action \
     --fps_subsampling_factor $fps_subsampling_factor \
     --lang_enhanced $lang_enhanced \
+    --quaternion_format $quaternion_format \
     --run_log_dir $run_log_dir
 
 
@@ -87,4 +89,5 @@ torchrun --nproc_per_node $ngpus --master_port $RANDOM \
     --lang_enhanced $lang_enhanced \
     --save_video 0 \
     --base_log_dir train_logs/${main_dir}/${run_log_dir}/eval_logs/ \
+    --quaternion_format $quaternion_format \
     --checkpoint train_logs/${main_dir}/${run_log_dir}/last.pth
