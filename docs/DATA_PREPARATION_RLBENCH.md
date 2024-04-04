@@ -19,6 +19,17 @@ We use exactly the same train/test set on RLBench as [PerAct](https://github.com
 1. Download our packaged demonstrations for training from [here](https://huggingface.co/katefgroup/3d_diffuser_actor/blob/main/Peract_packaged.zip).  Extract the zip file to `./data/peract/`
 
 
+### Optional: Re-render training/validation episodes in higher resolution
+
+1. Download the training/validation episodes from [PerAct](https://github.com/peract/peract?tab=readme-ov-file#pre-generated-datasets) repo.  Extract the zip files to `./data/peract/raw/train` or `./data/peract/raw/val`
+2. Run this bashscript for re-rendering and packaging them into `.dat` files
+```
+# set SPLIT=train for training episodes
+# set SPLIT=val for validation episodes
+> bash scripts/rerender_highres_cameraview.sh
+```
+
+
 ### Expected directory layout
 ```
 ./data/peract
