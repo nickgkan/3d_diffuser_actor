@@ -39,7 +39,7 @@ Create a conda environment with the following command:
 > pip install diffusers["torch"]
 
 # install dgl (https://www.dgl.ai/pages/start.html)
-> pip install dgl -f https://data.dgl.ai/wheels/cu116/dgl-1.1.3%2Bcu116-cp38-cp38-manylinux1_x86_64.whl
+>  pip install dgl==1.1.3+cu116 -f https://data.dgl.ai/wheels/cu116/dgl-1.1.3%2Bcu116-cp38-cp38-manylinux1_x86_64.whl
 
 # install flash attention (https://github.com/Dao-AILab/flash-attention#installation-and-features)
 > pip install packaging
