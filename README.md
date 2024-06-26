@@ -65,15 +65,16 @@ Remember to use the latest `calvin_env` module, which fixes bugs of `turn_off_le
 > pip install open3d
 
 # Install PyRep (https://github.com/stepjam/PyRep?tab=readme-ov-file#install)
-> mkdir PyRep; 
+> git clone https://github.com/stepjam/PyRep.git 
 > cd PyRep/
 > wget https://www.coppeliarobotics.com/files/V4_1_0/CoppeliaSim_Edu_V4_1_0_Ubuntu20_04.tar.xz
 > tar -xf CoppeliaSim_Edu_V4_1_0_Ubuntu20_04.tar.xz;
-> echo "export COPPELIASIM_ROOT=$(pwd)/PyRep/CoppeliaSim_Edu_V4_1_0_Ubuntu20_04" >> $HOME/.bashrc; 
+> echo "export COPPELIASIM_ROOT=$(pwd)/CoppeliaSim_Edu_V4_1_0_Ubuntu20_04" >> $HOME/.bashrc; 
 > echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$COPPELIASIM_ROOT" >> $HOME/.bashrc;
 > echo "export QT_QPA_PLATFORM_PLUGIN_PATH=\$COPPELIASIM_ROOT" >> $HOME/.bashrc;
 > source $HOME/.bashrc;
->pip install -r requirements.txt; pip install -e .; cd ..
+> conda activate 3d_diffuser_actor
+> pip install -r requirements.txt; pip install -e .; cd ..
 
 # Install RLBench (Note: there are different forks of RLBench)
 # PerAct setup
