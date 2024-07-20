@@ -44,7 +44,7 @@ Create a conda environment with the following command:
 # install flash attention (https://github.com/Dao-AILab/flash-attention#installation-and-features)
 > pip install packaging
 > pip install ninja
-> pip install flash-attn --no-build-isolation
+> pip install flash-attn==2.5.9.post1 --no-build-isolation
 ```
 
 ### Install CALVIN locally
