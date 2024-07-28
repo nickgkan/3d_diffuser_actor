@@ -18,7 +18,7 @@ We marry diffusion policies and 3D scene representations for robot manipulation.
 # Model overview and stand-alone usage
 To facilitate fast development on top of our model, we provide here an [overview of our implementation of 3D Diffuser Actor](./docs/OVERVIEW.md).
 
-The model can be indenpendently installed and used as stand-alone package.
+The model can be independently installed and used as stand-alone package.
 ```
 > pip install -e .
 # import the model
