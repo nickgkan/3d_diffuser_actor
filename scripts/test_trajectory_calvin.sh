@@ -20,7 +20,7 @@ lang_enhanced=1
 gripper_loc_bounds=tasks/calvin_rel_traj_location_bounds_task_ABC_D.json
 gripper_buffer=0.01
 val_freq=5000
-quaternion_format=wxyz
+quaternion_format=wxyz  # IMPORTANT: change this to be the same as the training script IF you're not using our checkpoint
 
 export PYTHONPATH=`pwd`:$PYTHONPATH
 

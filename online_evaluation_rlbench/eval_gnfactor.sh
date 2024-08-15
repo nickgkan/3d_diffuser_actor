@@ -18,7 +18,7 @@ lang_enhanced=0
 relative_action=0
 seed=0
 checkpoint=train_logs/diffuser_actor_gnfactor.pth
-quaternion_format=wxyz
+quaternion_format=wxyz  # IMPORTANT: change this to be the same as the training script IF you're not using our checkpoint
 
 num_ckpts=${#tasks[@]}
 for ((i=0; i<$num_ckpts; i++)); do
