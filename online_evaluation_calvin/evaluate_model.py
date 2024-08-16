@@ -168,7 +168,6 @@ class DiffusionModel(CalvinBaseModel):
 
         # history of actions
         gripper = torch.as_tensor(obs["proprio"]).to(device).unsqueeze(0)
-        gripper = gripper[:, -self.args.num_history:]
 
         trajectory = self.policy(
             fake_trajectory.float(),
