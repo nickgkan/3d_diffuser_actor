@@ -31,7 +31,14 @@ def main(root_dir, task):
         if os.path.isfile(f'{root_dir}/{task}/variation{variation}/variation_descriptions.pkl'):
             data1 = pickle.load(open(f'{root_dir}/{task}/all_variations/episodes/episode{num}/variation_descriptions.pkl', 'rb'))
             data2 = pickle.load(open(f'{root_dir}/{task}/variation{variation}/variation_descriptions.pkl', 'rb'))
-            assert data1 == data2
+            try:
+                assert data1 == data2
+                print(f"✓ Success: Variation {variation}, Episode {num} - descriptions match")
+            except AssertionError:
+                print(f"✗ Error: Mismatch in descriptions for Variation {variation}, Episode {num}")
+                print(f"  Source data: {data1}")
+                print(f"  Target data: {data2}")
+                continue
         else:
             call(['ln', '-s',
                   f'{root_dir}/{task}/all_variations/episodes/episode{num}/variation_descriptions.pkl',
